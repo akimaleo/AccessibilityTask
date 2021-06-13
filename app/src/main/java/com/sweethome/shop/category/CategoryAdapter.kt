@@ -22,9 +22,11 @@ class CategoryAdapter : RecyclerView.Adapter<ItemViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(LayoutInflater.from(parent.context).inflate(
-            R.layout.category_item_layout, parent, false
-        ))
+        return ItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.category_item_layout, parent, false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -41,7 +43,7 @@ class CategoryAdapter : RecyclerView.Adapter<ItemViewHolder>() {
 }
 
 
-class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val name: TextView = itemView.findViewById(R.id.name)
     private val manufacturer: TextView = itemView.findViewById(R.id.manufacturer)
     private val price: TextView = itemView.findViewById(R.id.price)
@@ -67,6 +69,8 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener {
             itemClickListener.onItemClick(viewModel)
         }
+        itemView.contentDescription =
+            name.text.toString() + ", " + manufacturer.text + ", " + viewModel.model + ", ${price.text}"
     }
 
 }

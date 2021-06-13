@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 
 class AddToCartButton : androidx.appcompat.widget.AppCompatButton {
 
@@ -17,12 +18,14 @@ class AddToCartButton : androidx.appcompat.widget.AppCompatButton {
 
     override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(info)
-        info.addAction(
-            AccessibilityNodeInfo.AccessibilityAction(
-                AccessibilityNodeInfo.ACTION_CLICK,
-                "Добавить в корзину"
-            )
-        )
+//        info.addAction(
+//            AccessibilityNodeInfo.AccessibilityAction(
+//                AccessibilityNodeInfo.ACTION_CLICK,
+//                "Добавить в корзину"
+//            )
+//        )
+//        val node = AccessibilityNodeInfoCompat.wrap(info)
+//        node.roleDescription = "Добавлено в корзину"
     }
 
 }

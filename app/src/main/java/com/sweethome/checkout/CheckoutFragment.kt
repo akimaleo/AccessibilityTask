@@ -45,8 +45,9 @@ class CheckoutFragment : BaseFragment<CheckoutPresenter, CheckoutMvpView>() {
                 totalPriceText: String
             ) {
                 itemsPrice.text = getString(R.string.subtotal_price, subtotalPriceText)
-                shipmentPrice.text = getString(R.string.shipment_price,  shipmentPriceText)
+                shipmentPrice.text = getString(R.string.shipment_price, shipmentPriceText)
                 totalPrice.text = totalPriceText
+                totalPrice.contentDescription = "всего $totalPriceText"
             }
 
             override fun updateDeliveryTypes(deliveryTypes: ArrayList<DeliveryViewModel>) {
@@ -141,7 +142,7 @@ class CheckoutFragment : BaseFragment<CheckoutPresenter, CheckoutMvpView>() {
     }
 }
 
-interface CheckoutMvpView: MvpView {
+interface CheckoutMvpView : MvpView {
     fun updateShipmentAddresses(shipmentAddresses: ArrayList<SelectorItemModel>)
     fun updatePaymentTypes(shipmentAddresses: ArrayList<SelectorItemModel>)
     fun updateFooter(
@@ -149,5 +150,6 @@ interface CheckoutMvpView: MvpView {
         shipmentPriceText: String,
         totalPriceText: String
     )
+
     fun updateDeliveryTypes(deliveryTypes: ArrayList<DeliveryViewModel>)
 }

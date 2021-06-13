@@ -3,13 +3,16 @@ package com.sweethome.checkout.delivery
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import com.sweethome.R
 
 class DeliveryItemView(context: Context, attributeSet: AttributeSet?) :
-    FrameLayout(context, attributeSet) {
+    ConstraintLayout(context, attributeSet) {
     constructor(context: Context) : this(context, null)
 
     var company: TextView
@@ -38,16 +41,24 @@ class DeliveryItemView(context: Context, attributeSet: AttributeSet?) :
             time.text = resources.getString(R.string.time_from_to, item.timeFrom, item.timeTo)
         }
         price.text = item.price
-        if (item.chosen)  {
+        if (item.chosen) {
             chosen = true
             toggle.setImageResource(R.drawable.ic_toggle_checked)
         } else {
             chosen = false
             toggle.setImageResource(R.drawable.ic_toggle_unchecked)
         }
-        toggle.setOnClickListener {
+        this.setOnClickListener {
             onChosenListener?.onItemChosen(item.id)
         }
+        val activatedString = if (chosen) "активировано" else "не активировано"
+        contentDescription = "${item.name}, ${time.text}, цена ${price.text}, $activatedString "
+    }
+
+    override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(info)
+        val node = AccessibilityNodeInfoCompat.wrap(info)
+        node.isChecked = chosen
     }
 }
 

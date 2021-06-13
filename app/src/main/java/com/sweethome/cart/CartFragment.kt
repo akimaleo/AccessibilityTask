@@ -3,6 +3,8 @@ package com.sweethome.cart
 import android.os.Bundle
 import android.text.style.TtsSpan
 import android.view.View
+import android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO
+import android.view.View.IMPORTANT_FOR_ACCESSIBILITY_YES
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -33,11 +35,18 @@ class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
                 shipment.text = getString(R.string.delivery_from, viewModel.shipment)
                 cartButton.itemsCount = viewModel.itemsCount.toInt()
                 fullPrice.text = viewModel.price
+                fullPrice.contentDescription = "Сума" + viewModel.price
                 confirmButton.alpha = 1f
                 confirmButton.setOnClickListener(checkoutClickListener)
+
+                itemsList.importantForAccessibility = IMPORTANT_FOR_ACCESSIBILITY_YES
+                confirmButton.importantForAccessibility = IMPORTANT_FOR_ACCESSIBILITY_YES
             }
 
             override fun showEmptyCart() {
+                itemsList.importantForAccessibility = IMPORTANT_FOR_ACCESSIBILITY_NO
+                confirmButton.importantForAccessibility = IMPORTANT_FOR_ACCESSIBILITY_NO
+
                 emptyCart.visibility = View.VISIBLE
                 shipment.visibility = View.GONE
                 fullPrice.visibility = View.GONE

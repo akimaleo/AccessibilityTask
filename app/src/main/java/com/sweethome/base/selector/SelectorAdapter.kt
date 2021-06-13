@@ -45,7 +45,8 @@ class SelectorAdapter : RecyclerView.Adapter<ItemViewHolder>() {
                 !item.checked
             )
         }
-
+        val activatedString = if (item.checked) "активировано" else "не активировано"
+        holder.itemView.contentDescription = "${item.title}, ${activatedString}"
     }
 
     fun setCheckedChangeListener(changeListener: CheckedChangeListener) {
