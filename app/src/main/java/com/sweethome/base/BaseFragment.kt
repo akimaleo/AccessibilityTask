@@ -9,7 +9,7 @@ import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import com.sweethome.R
 
-abstract class BaseFragment<T: MockPresenter<V>, V: MvpView> : Fragment(), MvpView {
+abstract class BaseFragment<T : MockPresenter<V>, V : MvpView> : Fragment(), MvpView {
 
     protected lateinit var presenter: T
     protected lateinit var mvpView: V

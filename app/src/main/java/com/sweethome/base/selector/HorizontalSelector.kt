@@ -8,7 +8,8 @@ import com.sweethome.R
 import com.sweethome.utils.StartEndOffsetItemDecoration
 
 
-class HorizontalSelector(context: Context, attributeSet: AttributeSet): RecyclerView(context, attributeSet) {
+class HorizontalSelector(context: Context, attributeSet: AttributeSet) :
+    RecyclerView(context, attributeSet) {
 
     private val selectorAdapter: SelectorAdapter = SelectorAdapter()
 
@@ -16,7 +17,8 @@ class HorizontalSelector(context: Context, attributeSet: AttributeSet): Recycler
         addItemDecoration(StartEndOffsetItemDecoration(context.resources.getDimensionPixelOffset(R.dimen.catalog_offset)))
         layoutManager = object : LinearLayoutManager(context, HORIZONTAL, false) {
             override fun checkLayoutParams(lp: LayoutParams): Boolean {
-                lp.width = width - resources.getDimensionPixelOffset(R.dimen.next_item_visible_part_width)
+                lp.width =
+                    width - resources.getDimensionPixelOffset(R.dimen.next_item_visible_part_width)
                 return true
             }
         }

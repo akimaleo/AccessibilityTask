@@ -1,6 +1,7 @@
 package com.sweethome.cart
 
 import android.os.Bundle
+import android.text.style.TtsSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sweethome.R
 import com.sweethome.base.BaseFragment
 import com.sweethome.base.MvpView
+import com.sweethome.view.CartButton
 
 class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
 
@@ -18,6 +20,7 @@ class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
     private lateinit var shipment: TextView
     private lateinit var emptyCart: ImageView
     private lateinit var itemsCount: TextView
+    private lateinit var cartButton: CartButton
     private lateinit var fullPrice: TextView
 
     private val adapter: CartItemsAdapter = CartItemsAdapter()
@@ -28,7 +31,7 @@ class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
                 adapter.updateList(viewModel.items)
                 emptyCart.visibility = View.GONE
                 shipment.text = getString(R.string.delivery_from, viewModel.shipment)
-                itemsCount.text = getString(R.string.items_on, viewModel.itemsCount)
+                cartButton.itemsCount = viewModel.itemsCount.toInt()
                 fullPrice.text = viewModel.price
                 confirmButton.alpha = 1f
                 confirmButton.setOnClickListener(checkoutClickListener)
@@ -37,7 +40,6 @@ class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
             override fun showEmptyCart() {
                 emptyCart.visibility = View.VISIBLE
                 shipment.visibility = View.GONE
-                itemsCount.visibility = View.GONE
                 fullPrice.visibility = View.GONE
                 confirmButton.alpha = 0.3f
                 confirmButton.setOnClickListener(null)
@@ -54,7 +56,7 @@ class CartFragment : BaseFragment<CartPresenter, CartMvpView>() {
         emptyCart = view.findViewById(R.id.empty_cart)
         confirmButton = view.findViewById(R.id.confirm)
         shipment = view.findViewById(R.id.shipment_condition)
-        itemsCount = view.findViewById(R.id.items_count)
+        cartButton = view.findViewById(R.id.cart_button)
         fullPrice = view.findViewById(R.id.total_price)
     }
 

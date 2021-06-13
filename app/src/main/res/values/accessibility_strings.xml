@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="a_back_button" translatable="false">Назад</string>
+    <string name="a_curt_button" translatable="false">Корзина %1$d єлементов</string>
+
+    <plurals name="a_cart_button">
+        <item quantity="zero">Пустая корзина</item>
+        <item quantity="one">Корзина %d элемент</item>
+        <item quantity="two">Корзина %d элемента</item>
+        <item quantity="other">Корзина %d элементов</item>
+    </plurals>
+
+</resources>

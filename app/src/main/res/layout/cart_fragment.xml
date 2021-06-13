@@ -27,9 +27,9 @@
         android:id="@+id/empty_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/empty_cart"
-        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,15 +49,15 @@
             android:id="@+id/shipment_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:lines="2"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@id/confirm"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Shipping to the United States from €225" />
 
         <TextView
-            android:id="@+id/items_count"
+            android:id="@+id/items_count_fragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black_60"
@@ -70,14 +70,15 @@
             android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Сума"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@id/confirm"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="€3,835" />
 
-        <TextView
+        <Button
             android:id="@+id/confirm"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -86,6 +87,7 @@
             android:background="@drawable/round_corner_rectangle"
             android:gravity="center"
             android:text="@string/confirm_checkout"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

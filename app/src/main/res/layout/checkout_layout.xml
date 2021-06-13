@@ -129,9 +129,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
+    <com.sweethome.view.CheckoutButton
         android:id="@+id/confirm_button"
         android:layout_width="match_parent"
+        android:textAllCaps="false"
         android:layout_height="48dp"
         android:layout_margin="16dp"
         android:background="@drawable/round_corner_rectangle"

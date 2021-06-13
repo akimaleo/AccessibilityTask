@@ -1,5 +1,6 @@
 package com.sweethome.shop.catalog
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +23,9 @@ class CatalogAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
-                LayoutInflater.from(
-                    parent.context
-                ).inflate(R.layout.catalog_category_item, parent, false)
-            )
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.catalog_category_item, parent, false)
+        )
     }
 
     fun setOnItemClickListener(itemClickListener: OnItemClickListener) {
@@ -42,12 +42,15 @@ class CatalogAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
 }
 
 
-class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val category: CategoryRecyclerView = itemView.findViewById(R.id.category)
     private val title: TextView = itemView.findViewById(R.id.title)
 
     fun bind(categoryViewModel: CategoryViewModel, itemClickListener: OnItemClickListener) {
         category.update(categoryViewModel, itemClickListener)
         title.text = categoryViewModel.title
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            itemView.accessibilityPaneTitle = categoryViewModel.title
+        }
     }
 }

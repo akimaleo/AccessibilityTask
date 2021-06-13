@@ -44,8 +44,8 @@ class SelectorAdapter : RecyclerView.Adapter<ItemViewHolder>() {
                 item,
                 !item.checked
             )
-
         }
+
     }
 
     fun setCheckedChangeListener(changeListener: CheckedChangeListener) {
